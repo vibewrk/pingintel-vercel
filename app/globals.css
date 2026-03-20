@@ -2,26 +2,138 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* Font Face Declarations */
+@font-face {
+  font-family: 'MacanPan';
+  src: url('/fonts/MacanPanWeb-Regular.woff2') format('woff2'),
+       url('/fonts/MacanPanWeb-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'MacanPan';
+  src: url('/fonts/MacanPanWeb-Book.woff2') format('woff2'),
+       url('/fonts/MacanPanWeb-Book.woff') format('woff');
+  font-weight: 450;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'MacanPan';
+  src: url('/fonts/MacanPanWeb-Medium.woff2') format('woff2'),
+       url('/fonts/MacanPanWeb-Medium.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'MacanPan';
+  src: url('/fonts/MacanPanWeb-Semibold.woff2') format('woff2'),
+       url('/fonts/MacanPanWeb-Semibold.woff') format('woff');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'MacanPan';
+  src: url('/fonts/MacanPanWeb-Bold.woff2') format('woff2'),
+       url('/fonts/MacanPanWeb-Bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'MacanStencilPan';
+  src: url('/fonts/MacanStencilPanWeb-Regular.woff2') format('woff2'),
+       url('/fonts/MacanStencilPanWeb-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'MacanStencilPan';
+  src: url('/fonts/MacanStencilPanWeb-Book.woff2') format('woff2'),
+       url('/fonts/MacanStencilPanWeb-Book.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'MacanStencilPan';
+  src: url('/fonts/MacanStencilPanWeb-Bold.woff2') format('woff2'),
+       url('/fonts/MacanStencilPanWeb-Bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'IvarDisplay';
+  src: url('/fonts/IvarDisplayTRIAL-Regular.woff2') format('woff2'),
+       url('/fonts/IvarDisplayTRIAL-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'IvarDisplay';
+  src: url('/fonts/IvarDisplayTRIAL-Italic.woff2') format('woff2'),
+       url('/fonts/IvarDisplayTRIAL-Italic.woff') format('woff');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+/* Base Styles */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'MacanPan', sans-serif;
+  font-weight: 400;
+  background-color: #141414;
+  color: #ffffff;
+  line-height: 1.5;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #141414; }
+::-webkit-scrollbar-thumb { background: #f32c01; border-radius: 3px; }
+
+/* Marquee animations */
+@keyframes marquee-left {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+@keyframes marquee-right {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+
+/* Utility classes */
+.u-container { width: 100%; margin: 0 auto; }
+.u-container--1 { max-width: 1620px; }
+.u-container--pad {
+  padding-left: clamp(20px, 4vw, 80px);
+  padding-right: clamp(20px, 4vw, 80px);
+}
+
+.container-ping {
+  max-width: 1620px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: clamp(20px, 4vw, 80px);
+  padding-right: clamp(20px, 4vw, 80px);
+}
+
+.section-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
 }
