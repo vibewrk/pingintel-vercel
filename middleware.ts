@@ -8,7 +8,7 @@ export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
 
   // For the auth page itself, flag it so the root layout can skip Header/Footer
-  if (pathname.startsWith(AUTH_PATH)) {
+  if (pathname === AUTH_PATH || pathname.startsWith(AUTH_PATH + '/')) {
     const requestHeaders = new Headers(request.headers)
     requestHeaders.set('x-is-auth-page', '1')
     return NextResponse.next({ request: { headers: requestHeaders } })
