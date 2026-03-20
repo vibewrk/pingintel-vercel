@@ -3,6 +3,7 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Script from "next/script";
+import { headers } from "next/headers";
 
 export const metadata: Metadata = {
   title: {
@@ -25,6 +26,9 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const headersList = headers()
+  const isAuthPage = headersList.get('x-is-auth-page') === '1'
+
   return (
     <html lang="en">
       <head>
@@ -47,18 +51,20 @@ export default function RootLayout({
         />
       </head>
       <body>
-        <Header />
+        {!isAuthPage && <Header />}
         <main>{children}</main>
-        <Footer />
-        <noscript>
-          <img
-            height="1"
-            width="1"
-            style={{ display: "none" }}
-            alt=""
-            src="https://px.ads.linkedin.com/collect/?pid=8532818&fmt=gif"
-          />
-        </noscript>
+        {!isAuthPage && <Footer />}
+        {!isAuthPage && (
+          <noscript>
+            <img
+              height="1"
+              width="1"
+              style={{ display: "none" }}
+              alt=""
+              src="https://px.ads.linkedin.com/collect/?pid=8532818&fmt=gif"
+            />
+          </noscript>
+        )}
       </body>
     </html>
   );
